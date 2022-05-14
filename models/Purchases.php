@@ -64,6 +64,45 @@ class Purchases
         return false;
     }
 
+    // read a particular entry
+    public function read_single()
+    {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE purchase_type = :purchase_type'
+            . ' AND purchase_year = :purchase_year AND department = :department AND purchase_name = :purchase_name'
+            . ' AND purchase_purpose = :purchase_purpose AND is_consumable = :is_consumable AND is_below = :is_below';
+
+        $stmt = $this->conn->prepare($query);
+
+        // clean the data
+        $this->purchase_type = htmlspecialchars(strip_tags($this->purchase_type));
+        $this->purchase_year = htmlspecialchars(strip_tags($this->purchase_year));
+        $this->department = htmlspecialchars(strip_tags($this->department));
+        $this->purchase_name = htmlspecialchars(strip_tags($this->purchase_name));
+        $this->purchase_purpose = htmlspecialchars(strip_tags($this->purchase_purpose));
+        $this->is_consumable = htmlspecialchars(strip_tags($this->is_consumable));
+        $this->is_below = htmlspecialchars(strip_tags($this->is_below));
+
+        $stmt->bindParam(':purchase_type', $this->purchase_type);
+        $stmt->bindParam(':purchase_year', $this->purchase_year);
+        $stmt->bindParam(':department', $this->department);
+        $stmt->bindParam(':purchase_name', $this->purchase_name);
+        $stmt->bindParam(':purchase_purpose', $this->purchase_purpose);
+        $stmt->bindParam(':is_consumable', $this->is_consumable);
+        $stmt->bindParam(':is_below', $this->is_below);
+
+        if ($stmt->execute()) {
+            // Fetch the data
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // If data exists, return the data
+            if ($row) {
+                return $row;
+            }
+        }
+
+        return false;
+    }
+
     // Insert new purchase data
     public function post()
     {
@@ -86,7 +125,7 @@ class Purchases
         $stmt->bindParam(':purchase_year', $this->purchase_year);
         $stmt->bindParam(':department', $this->department);
         $stmt->bindParam(':purchase_name', $this->purchase_name);
-        $stmt->bindParam(':purchase_purpose	', $this->purchase_purpose);
+        $stmt->bindParam(':purchase_purpose', $this->purchase_purpose);
         $stmt->bindParam(':is_consumable', $this->is_consumable);
         $stmt->bindParam(':is_below', $this->is_below);
 
@@ -110,7 +149,7 @@ class Purchases
         $this->purchase_id  = htmlspecialchars(strip_tags($this->purchase_id ));
 
         $stmt->bindParam(':' . $to_update, $this->$to_update);
-        $stmt->bindParam(':purchase_id ', $this->purchase_id );
+        $stmt->bindParam(':purchase_id', $this->purchase_id );
 
         // If data updated successfully, return True
         if ($stmt->execute()) {

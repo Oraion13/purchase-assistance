@@ -3,7 +3,7 @@
 class DbConnection
 {
     private $host = 'localhost';
-    private $db_name = 'timetable';
+    private $db_name = 'purchase_assistance';
     private $username = 'root';
     private $password = '';
     private $conn;

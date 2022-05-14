@@ -3,7 +3,7 @@
 // Operations for 
 // all the file storing tables
 // is handeled here
-class Add_description
+class Files
 {
     private $conn;
 
@@ -87,27 +87,6 @@ class Add_description
             return true;
         }
 
-        return false;
-    }
-
-    // Update a field
-    public function update_row($to_update)
-    {
-        $to_set = $to_update . ' = :' . $to_update;
-        $query = 'UPDATE ' . $this->table . ' SET ' . $to_set . ' WHERE ' . $this->id_name . ' =: ' . $this->id_name;
-
-        $stmt = $this->conn->prepare($query);
-
-        $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->col_value = htmlspecialchars(strip_tags($this->col_value));
-
-        $stmt->bindParam(':' . $to_update, $this->col_value);
-        $stmt->bindParam(':add_description_id', $this->id);
-
-        // If data updated successfully, return True
-        if ($stmt->execute()) {
-            return true;
-        }
         return false;
     }
 
