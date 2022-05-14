@@ -1,0 +1,483 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 14, 2022 at 09:53 AM
+-- Server version: 8.0.28
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `purchase_assistance`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_add_description`
+--
+
+CREATE TABLE `purchase_add_description` (
+  `add_description_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `note_order_dean` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_vc` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `proceedings` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_order` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `estimation` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `putup_core_committee` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `minutes_recommended` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `po_vender` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bill` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `purchase_add_description`
+--
+
+INSERT INTO `purchase_add_description` (`add_description_id`, `purchase_id`, `note_order_dean`, `note_vc`, `proceedings`, `note_order`, `estimation`, `putup_core_committee`, `minutes_recommended`, `po_vender`, `bill`, `payment`) VALUES
+(1, 1, 'updated', NULL, NULL, 'status', NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_admin`
+--
+
+CREATE TABLE `purchase_admin` (
+  `admin_id` int NOT NULL,
+  `admin_name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `purchase_admin`
+--
+
+INSERT INTO `purchase_admin` (`admin_id`, `admin_name`, `password`) VALUES
+(1, 'admin', '$2a$10$V8pO0kanLFv9JCw5rgMcJ.8ur/s9guEQMZj7lXX0Bxx7uFOwYNMjS\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_bill`
+--
+
+CREATE TABLE `purchase_bill` (
+  `bill_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `bill_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bill_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bill` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_estimation`
+--
+
+CREATE TABLE `purchase_estimation` (
+  `estimation_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `estimation_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `estimation_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `estimation` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_minutes_recommended`
+--
+
+CREATE TABLE `purchase_minutes_recommended` (
+  `minutes_recommended_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `minutes_recommended_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `minutes_recommended_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `minutes_recommended` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_note_order`
+--
+
+CREATE TABLE `purchase_note_order` (
+  `note_order_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `note_order_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_order_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_order` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_note_order_dean`
+--
+
+CREATE TABLE `purchase_note_order_dean` (
+  `note_order_dean_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `note_order_dean_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_order_dean_type` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_order_dean` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_note_vc`
+--
+
+CREATE TABLE `purchase_note_vc` (
+  `note_vc_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `note_vc_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_vc_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `note_vc` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_payment`
+--
+
+CREATE TABLE `purchase_payment` (
+  `payment_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `payment_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_po_vender`
+--
+
+CREATE TABLE `purchase_po_vender` (
+  `po_vender_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `po_vender_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `po_vender_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `po_vender` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_proceedings`
+--
+
+CREATE TABLE `purchase_proceedings` (
+  `proceedings_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `proceedings_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `proceedings_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `proceedings` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_purchases`
+--
+
+CREATE TABLE `purchase_purchases` (
+  `purchase_id` int NOT NULL,
+  `purchase_type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `purchase_year` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `department` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `purchase_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `purchase_purpose` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_consumable` int NOT NULL,
+  `is_below` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `purchase_purchases`
+--
+
+INSERT INTO `purchase_purchases` (`purchase_id`, `purchase_type`, `purchase_year`, `department`, `purchase_name`, `purchase_purpose`, `is_consumable`, `is_below`) VALUES
+(1, 'service', '2022', 'Department of computer science', 'PS0456', 'sample', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_putup_core_committee`
+--
+
+CREATE TABLE `purchase_putup_core_committee` (
+  `putup_core_committee_id` int NOT NULL,
+  `purchase_id` int DEFAULT NULL,
+  `putup_core_committee_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `putup_core_committee_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `putup_core_committee` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `purchase_add_description`
+--
+ALTER TABLE `purchase_add_description`
+  ADD PRIMARY KEY (`add_description_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_admin`
+--
+ALTER TABLE `purchase_admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `purchase_bill`
+--
+ALTER TABLE `purchase_bill`
+  ADD PRIMARY KEY (`bill_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_estimation`
+--
+ALTER TABLE `purchase_estimation`
+  ADD PRIMARY KEY (`estimation_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_minutes_recommended`
+--
+ALTER TABLE `purchase_minutes_recommended`
+  ADD PRIMARY KEY (`minutes_recommended_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_note_order`
+--
+ALTER TABLE `purchase_note_order`
+  ADD PRIMARY KEY (`note_order_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_note_order_dean`
+--
+ALTER TABLE `purchase_note_order_dean`
+  ADD PRIMARY KEY (`note_order_dean_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_note_vc`
+--
+ALTER TABLE `purchase_note_vc`
+  ADD PRIMARY KEY (`note_vc_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_payment`
+--
+ALTER TABLE `purchase_payment`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_po_vender`
+--
+ALTER TABLE `purchase_po_vender`
+  ADD PRIMARY KEY (`po_vender_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_proceedings`
+--
+ALTER TABLE `purchase_proceedings`
+  ADD PRIMARY KEY (`proceedings_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- Indexes for table `purchase_purchases`
+--
+ALTER TABLE `purchase_purchases`
+  ADD PRIMARY KEY (`purchase_id`);
+
+--
+-- Indexes for table `purchase_putup_core_committee`
+--
+ALTER TABLE `purchase_putup_core_committee`
+  ADD PRIMARY KEY (`putup_core_committee_id`),
+  ADD KEY `purchase_id` (`purchase_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `purchase_add_description`
+--
+ALTER TABLE `purchase_add_description`
+  MODIFY `add_description_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `purchase_admin`
+--
+ALTER TABLE `purchase_admin`
+  MODIFY `admin_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `purchase_bill`
+--
+ALTER TABLE `purchase_bill`
+  MODIFY `bill_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_estimation`
+--
+ALTER TABLE `purchase_estimation`
+  MODIFY `estimation_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_minutes_recommended`
+--
+ALTER TABLE `purchase_minutes_recommended`
+  MODIFY `minutes_recommended_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_note_order`
+--
+ALTER TABLE `purchase_note_order`
+  MODIFY `note_order_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_note_order_dean`
+--
+ALTER TABLE `purchase_note_order_dean`
+  MODIFY `note_order_dean_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_note_vc`
+--
+ALTER TABLE `purchase_note_vc`
+  MODIFY `note_vc_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_payment`
+--
+ALTER TABLE `purchase_payment`
+  MODIFY `payment_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_po_vender`
+--
+ALTER TABLE `purchase_po_vender`
+  MODIFY `po_vender_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_proceedings`
+--
+ALTER TABLE `purchase_proceedings`
+  MODIFY `proceedings_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_purchases`
+--
+ALTER TABLE `purchase_purchases`
+  MODIFY `purchase_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `purchase_putup_core_committee`
+--
+ALTER TABLE `purchase_putup_core_committee`
+  MODIFY `putup_core_committee_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `purchase_add_description`
+--
+ALTER TABLE `purchase_add_description`
+  ADD CONSTRAINT `purchase_add_description_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_bill`
+--
+ALTER TABLE `purchase_bill`
+  ADD CONSTRAINT `purchase_bill_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_estimation`
+--
+ALTER TABLE `purchase_estimation`
+  ADD CONSTRAINT `purchase_estimation_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_minutes_recommended`
+--
+ALTER TABLE `purchase_minutes_recommended`
+  ADD CONSTRAINT `purchase_minutes_recommended_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_note_order`
+--
+ALTER TABLE `purchase_note_order`
+  ADD CONSTRAINT `purchase_note_order_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_note_order_dean`
+--
+ALTER TABLE `purchase_note_order_dean`
+  ADD CONSTRAINT `purchase_note_order_dean_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_note_vc`
+--
+ALTER TABLE `purchase_note_vc`
+  ADD CONSTRAINT `purchase_note_vc_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_payment`
+--
+ALTER TABLE `purchase_payment`
+  ADD CONSTRAINT `purchase_payment_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_po_vender`
+--
+ALTER TABLE `purchase_po_vender`
+  ADD CONSTRAINT `purchase_po_vender_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_proceedings`
+--
+ALTER TABLE `purchase_proceedings`
+  ADD CONSTRAINT `purchase_proceedings_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchase_putup_core_committee`
+--
+ALTER TABLE `purchase_putup_core_committee`
+  ADD CONSTRAINT `purchase_putup_core_committee_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchase_purchases` (`purchase_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
