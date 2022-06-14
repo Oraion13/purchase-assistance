@@ -33,6 +33,7 @@ class Putup_core_committee_api extends Files
         $this->Putup_core_committee->col_name = 'putup_core_committee_name';
         $this->Putup_core_committee->col_type = 'putup_core_committee_type';
         $this->Putup_core_committee->col = 'putup_core_committee';
+        $this->Putup_core_committee->col_date = 'putup_core_committee_date';
     }
 
     // Get all data
@@ -91,9 +92,10 @@ class Putup_core_committee_api extends Files
 
         // Clean the data
         $this->Putup_core_committee->purchase_id = $_GET['ID'];
-        $this->Putup_core_committee->col_name = $_FILES['putup_core_committee']['name'];
-        $this->Putup_core_committee->col_type = $_FILES['putup_core_committee']['type'];
-        $this->Putup_core_committee->col = file_get_contents($_FILES['putup_core_committee']['tmp_name']);
+        $this->Putup_core_committee->col_name_value = $_FILES['putup_core_committee']['name'];
+        $this->Putup_core_committee->col_type_value = $_FILES['putup_core_committee']['type'];
+        $this->Putup_core_committee->col_value = file_get_contents($_FILES['putup_core_committee']['tmp_name']);
+        $this->Putup_core_committee->col_date_value=$_POST['putup_core_committee_date'];
 
         if ($this->Putup_core_committee->post()) {
             $this->get_by_id($_GET['ID']);
@@ -105,7 +107,7 @@ class Putup_core_committee_api extends Files
     // Delete a file
     public function delete_by_id()
     {
-        if (isset($_GET['ID'])) {
+        if (!isset($_GET['ID'])) {
             send(400, "error", "provide an ID");
             die();
         }
@@ -119,10 +121,7 @@ class Putup_core_committee_api extends Files
     }
 }
 
-// To check if admin is logged in
-loggedin();
 
-// If admin logged in ...
 
 // GET all the info
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -133,6 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $Putup_core_committee_api->get();
     }
 }
+
+// To check if admin is logged in
+loggedin();
+
+// If admin logged in ...
 
 // POST a new file
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT') {

@@ -33,6 +33,7 @@ class Estimation_api extends Files
         $this->Estimation->col_name = 'estimation_name';
         $this->Estimation->col_type = 'estimation_type';
         $this->Estimation->col = 'estimation';
+        $this->Estimation->col_date = 'estimation_date';
     }
 
     // Get all data
@@ -91,10 +92,11 @@ class Estimation_api extends Files
 
         // Clean the data
         $this->Estimation->purchase_id = $_GET['ID'];
-        $this->Estimation->col_name = $_FILES['estimation']['name'];
-        $this->Estimation->col_type = $_FILES['estimation']['type'];
-        $this->Estimation->col = file_get_contents($_FILES['estimation']['tmp_name']);
-
+        $this->Estimation->col_name_value = $_FILES['estimation']['name'];
+        $this->Estimation->col_type_value = $_FILES['estimation']['type'];
+        $this->Estimation->col_value = file_get_contents($_FILES['estimation']['tmp_name']);
+        $this->Estimation->col_date_value = $_POST['estimation_date'];
+        
         if ($this->Estimation->post()) {
             $this->get_by_id($_GET['ID']);
         } else {
@@ -105,7 +107,7 @@ class Estimation_api extends Files
     // Delete a file
     public function delete_by_id()
     {
-        if (isset($_GET['ID'])) {
+        if (!isset($_GET['ID'])) {
             send(400, "error", "provide an ID");
             die();
         }
@@ -119,8 +121,7 @@ class Estimation_api extends Files
     }
 }
 
-// To check if admin is logged in
-loggedin();
+
 
 // If admin logged in ...
 
@@ -133,6 +134,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $Estimation_api->get();
     }
 }
+
+// To check if admin is logged in
+loggedin();
 
 // POST a new file
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT') {

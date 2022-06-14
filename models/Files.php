@@ -13,12 +13,14 @@ class Files
     public $col_name = '';
     public $col_type = '';
     public $col = '';
+    public $col_date = '';
 
     public $id = 0;
     public $purchase_id = 0;
     public $col_name_value = '';
     public $col_type_value = '';
     public $col_value = '';
+    public $col_date_value = '';
 
     // Connect to the DB
     public function __construct($db)
@@ -70,7 +72,8 @@ class Files
     {
         $query = 'INSERT INTO ' . $this->table . ' SET purchase_id = :purchase_id, ' . $this->col_name . ' = :' . $this->col_name . ', '
         . $this->col_type . ' = :' . $this->col_type . ', '
-        . $this->col . ' = :' . $this->col;
+        . $this->col . ' = :' . $this->col . ', '
+        . $this->col_date . ' =:' . $this->col_date;
 
         $stmt = $this->conn->prepare($query);
 
@@ -81,6 +84,7 @@ class Files
         $stmt->bindParam(':' . $this->col_name, $this->col_name_value);
         $stmt->bindParam(':' . $this->col_type, $this->col_type_value);
         $stmt->bindParam(':' . $this->col, $this->col_value);
+        $stmt->bindParam(':' . $this->col_date, $this->col_date_value);
 
         // If data inserted successfully, return True
         if ($stmt->execute()) {
@@ -93,7 +97,7 @@ class Files
     // Delete data by id
     public function delete_row()
     {
-        $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->id_name . ' =: ' . $this->id_name;
+        $query = 'DELETE FROM ' . $this->table . ' WHERE ' . $this->id_name . ' =:' . $this->id_name;
 
         $stmt = $this->conn->prepare($query);
 
@@ -101,12 +105,11 @@ class Files
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt->bindParam(':' . $this->id_name , $this->id);
+        // echo "query: ";
+        // print_r($stmt);
 
         if ($stmt->execute()) {
-            // If data exists, return the data
-            if ($stmt) {
-                return $stmt;
-            }
+            return true;
         }
 
         return false;

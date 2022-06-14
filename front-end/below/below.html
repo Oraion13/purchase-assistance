@@ -1,0 +1,155 @@
+
+<html>
+    <had><title>Order Status</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <style>
+            .home{
+                margin-left: 150px;
+            }
+            .logout{
+                margin-left: 900px;
+            }
+        </style>
+    </had>
+    <body>
+    <div class="table-box">
+        <button type="button" class="btn btn-outline-secondary home"><a href="../form.html">Home</a></button>
+    <button type="button" class="btn btn-outline-secondary logout" id="logout_form">Logout</button>
+            <div class="table-row table-head">
+                <div class="table-cell first-cell">
+                    <p>Order Status</p>
+                </div>
+                <div class="table-cell">
+                    <p>Date</p>
+                </div>
+                <div class="table-cell">
+                    <p>File</p>
+                </div>
+                <div class="table-cell last-cell">
+                    <p>Submission</p>
+                </div> 
+            </div>
+    
+    
+            <div class="table-row" id="note_order_cell">
+                <div class="table-cell first-cell">
+                    <p>Note Order</p>
+                </div>
+                <div class="table-cell">
+                    <input type="date" id="note_order_date">
+                </div>
+                <div class="table-cell">
+                    <input type="file" id="note_order">
+                </div> 
+                <div class="table-cell last-cell">
+                    <input type="submit" id="note_order_submit">
+                </div>
+            </div>
+    
+    
+            <div class="table-row" id="estimation_cell">
+                <div class="table-cell first-cell">
+                    <p>Estimation</p>
+                </div>
+                <div class="table-cell">
+                    <input type="date" id="estimation_date">
+                </div>
+                <div class="table-cell">
+                    <input type="file" id="estimation">
+                </div>
+                <div class="table-cell last-cell">
+                    <input type="submit" id="estimation_submit">
+                </div>
+            </div>
+    
+            <div class="table-row" id="core_committee_cell">
+                <div class="table-cell first-cell">
+                    <p>Core Committee</p>
+                </div>
+                <div class="table-cell">
+                    <input type="date" id="core_committee_date">
+                </div>
+                <div class="table-cell">
+                    <input type="file" id="core_committee">
+                </div>
+                <div class="table-cell last-cell">
+                    <input type="submit" id="core_committee_submit">
+                </div>
+            </div>
+    
+            <div class="table-row" id="minutes_cell">
+                <div class="table-cell first-cell">
+                    <p>Minutes</p>
+                </div>
+                <div class="table-cell">
+                    <input type="date" id="minutes_date">
+                </div>
+                <div class="table-cell">
+                    <input type="file" id="minutes">
+                </div>
+                <div class="table-cell last-cell">
+                    <input type="submit" id="minutes_submit">
+                </div>
+            </div>
+    
+            <div class="table-row" id="purchase_order_cell">
+                <div class="table-cell first-cell">
+                    <p>Purchase Order</p>
+                </div>
+                <div class="table-cell">
+                    <input type="date" id="purchase_order_date">
+                </div>
+                <div class="table-cell">
+                    <input type="file" id="purchase_order">
+                </div>
+                <div class="table-cell last-cell">
+                    <input type="submit" id="purchase_order_submit">
+                </div>
+            </div>
+    
+    
+            <div class="table-row" id="bill_cell">
+                <div class="table-cell first-cell">
+                    <p>Bill</p>
+                </div>
+                <div class="table-cell">
+                    <input type="date" id="bill_date">
+                </div>
+                <div class="table-cell">
+                    <input type="file" id="bill">
+                </div>
+                <div class="table-cell last-cell">
+                    <input type="submit" id="bill_submit">
+                </div>
+            </div>
+    
+            <div class="table-row" id="payment_cell">
+                <div class="table-cell first-cell">
+                    <p>Payment</p>
+                </div>
+                <div class="table-cell">
+                    <input type="date" id="payment_date">
+                </div>
+                <div class="table-cell">
+                    <input type="file" id="payment">
+                </div>
+                <div class="table-cell last-cell">
+                    <input type="submit" id="payment_submit">
+                </div>
+            </div>
+            
+    
+           
+    </div>   
+    </body>
+    <script src="./note_order_below.js"></script>
+    <script src="./estimation_below.js"></script>
+    <script src="./core_committee_below.js"></script>
+    <script src="./minutes_below.js"></script>
+    <script src="./purchase_order_below.js"></script>
+    <script src="./bill_below.js"></script>
+    <script src="./payment_below.js"></script>
+    <script src="./logout.js"></script>
+    </html>

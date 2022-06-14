@@ -33,6 +33,7 @@ class Payment_api extends Files
         $this->Payment->col_name = 'payment_name';
         $this->Payment->col_type = 'payment_type';
         $this->Payment->col = 'payment';
+        $this->Payment->col_date = 'payment_date';
     }
 
     // Get all data
@@ -91,9 +92,10 @@ class Payment_api extends Files
 
         // Clean the data
         $this->Payment->purchase_id = $_GET['ID'];
-        $this->Payment->col_name = $_FILES['payment']['name'];
-        $this->Payment->col_type = $_FILES['payment']['type'];
-        $this->Payment->col = file_get_contents($_FILES['payment']['tmp_name']);
+        $this->Payment->col_name_value = $_FILES['payment']['name'];
+        $this->Payment->col_type_value = $_FILES['payment']['type'];
+        $this->Payment->col_value = file_get_contents($_FILES['payment']['tmp_name']);
+        $this->Payment->col_date_value=$_POST['payment_date'];
 
         if ($this->Payment->post()) {
             $this->get_by_id($_GET['ID']);
@@ -105,7 +107,7 @@ class Payment_api extends Files
     // Delete a file
     public function delete_by_id()
     {
-        if (isset($_GET['ID'])) {
+        if (!isset($_GET['ID'])) {
             send(400, "error", "provide an ID");
             die();
         }
@@ -119,10 +121,7 @@ class Payment_api extends Files
     }
 }
 
-// To check if admin is logged in
-loggedin();
 
-// If admin logged in ...
 
 // GET all the info
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -133,6 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $Payment_api->get();
     }
 }
+
+// To check if admin is logged in
+loggedin();
+
+// If admin logged in ...
 
 // POST a new file
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT') {

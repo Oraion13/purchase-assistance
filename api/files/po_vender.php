@@ -33,6 +33,7 @@ class Po_vender_api extends Files
         $this->Po_vender->col_name = 'po_vender_name';
         $this->Po_vender->col_type = 'po_vender_type';
         $this->Po_vender->col = 'po_vender';
+        $this->Po_vender->col_date = 'po_vender_date';
     }
 
     // Get all data
@@ -91,9 +92,10 @@ class Po_vender_api extends Files
 
         // Clean the data
         $this->Po_vender->purchase_id = $_GET['ID'];
-        $this->Po_vender->col_name = $_FILES['po_vender']['name'];
-        $this->Po_vender->col_type = $_FILES['po_vender']['type'];
-        $this->Po_vender->col = file_get_contents($_FILES['po_vender']['tmp_name']);
+        $this->Po_vender->col_name_value = $_FILES['po_vender']['name'];
+        $this->Po_vender->col_type_value = $_FILES['po_vender']['type'];
+        $this->Po_vender->col_value = file_get_contents($_FILES['po_vender']['tmp_name']);
+        $this->Po_vender->col_date_value=$_POST['po_vender_date'];
 
         if ($this->Po_vender->post()) {
             $this->get_by_id($_GET['ID']);
@@ -105,7 +107,7 @@ class Po_vender_api extends Files
     // Delete a file
     public function delete_by_id()
     {
-        if (isset($_GET['ID'])) {
+        if (!isset($_GET['ID'])) {
             send(400, "error", "provide an ID");
             die();
         }
@@ -119,10 +121,7 @@ class Po_vender_api extends Files
     }
 }
 
-// To check if admin is logged in
-loggedin();
 
-// If admin logged in ...
 
 // GET all the info
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -133,6 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $Po_vender_api->get();
     }
 }
+
+// To check if admin is logged in
+loggedin();
+
+// If admin logged in ...
 
 // POST a new file
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT') {

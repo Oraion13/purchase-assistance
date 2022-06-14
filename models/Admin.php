@@ -4,7 +4,7 @@
 class Admin
 {
     private $conn;
-    private $table = 'timetable_admin';
+    private $table = 'purchase_admin';
 
     public $admin_id;
     public $admin_name;

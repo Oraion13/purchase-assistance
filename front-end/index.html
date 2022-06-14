@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Assistance</title>
+    <link href="index.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <div class="main">
+            <ul>
+                <li><a href="./user_home/user_home.html">Status</a></li>
+                
+                
+            </ul>
+        </div>
+        <div class="title">
+            <h1>
+                Purchase Assistance
+            </h1>
+        </div>
+        <form id="login_form" class="form">
+            <h2>Login Here</h2>
+            <input type="text" id="username" placeholder="Enter Faculty ID Here" required>
+            <input type="password" id="password" placeholder="Enter Password Here" required>
+            
+            <button  type="submit" class="btnn">Login</button>
+            <!-- <button onclick="forgetpwToReset()" class="btnn"><a class="forgetPassword" href="#">Forget Password?</a> </button>  -->
+
+          
+            </form>
+ 
+            <form id="reset">
+                <h2>Enter Email to Reset Password</h2>
+                <input type="email" name="email" pattern=".+.+\..+" placeholder="Enter email" required/>
+                <button onclick="resetToOtp()" class="btnn" type="submit"><a href="#">Submit</a></button>
+
+            </form>
+            <form id="otp">
+                <h2>Enter OTP</h2>
+                <input type="text" minlength="4" maxlength="4" placeholder="Enter your OTP" required>
+                <button onclick="otpToRecreate()" class="btnn" type="submit" ><a href="#">Submit</a></button>
+            </form>
+            <form id="recreate">
+                <h2>Reset your password</h2>
+                <input type="password" name="password" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$" placeholder="Enter new Password" required>
+
+                <input type="password" name="password" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$" placeholder="Confirm your new Password" required>
+                <button onclick="toLogin()" class="btnn" type="submit" ><a href="#">Create</a></button>
+            </form>
+            <form id="search">
+                <h2>Status</h2>
+                <input type="text" placeholder="Enter Purschase ID" required/>
+                <button onclick="" class="btnn" type="submit" ><a href="#">Search</a></button>
+            </form>
+    </header>
+   
+    <script src="index.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>

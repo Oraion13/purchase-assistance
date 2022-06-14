@@ -33,6 +33,7 @@ class Bill_api extends Files
         $this->Bill->col_name = 'bill_name';
         $this->Bill->col_type = 'bill_type';
         $this->Bill->col = 'bill';
+        $this->Bill->col_date = 'bill_date';
     }
 
     // Get all data
@@ -91,9 +92,11 @@ class Bill_api extends Files
 
         // Clean the data
         $this->Bill->purchase_id = $_GET['ID'];
-        $this->Bill->col_name = $_FILES['bill']['name'];
-        $this->Bill->col_type = $_FILES['bill']['type'];
-        $this->Bill->col = file_get_contents($_FILES['bill']['tmp_name']);
+        $this->Bill->col_name_value = $_FILES['bill']['name'];
+        $this->Bill->col_type_value = $_FILES['bill']['type'];
+        $this->Bill->col_value = file_get_contents($_FILES['bill']['tmp_name']);
+        $this->Bill->col_date_value = $_POST['bill_date'];
+
 
         if ($this->Bill->post()) {
             $this->get_by_id($_GET['ID']);
@@ -105,7 +108,7 @@ class Bill_api extends Files
     // Delete a file
     public function delete_by_id()
     {
-        if (isset($_GET['ID'])) {
+        if (!isset($_GET['ID'])) {
             send(400, "error", "provide an ID");
             die();
         }
@@ -119,9 +122,6 @@ class Bill_api extends Files
     }
 }
 
-// To check if admin is logged in
-loggedin();
-
 // If admin logged in ...
 
 // GET all the info
@@ -133,6 +133,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $Bill_api->get();
     }
 }
+
+
+// To check if admin is logged in
+loggedin();
 
 // POST a new file
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT') {

@@ -33,6 +33,7 @@ class Note_vc_api extends Files
         $this->Note_vc->col_name = 'note_vc_name';
         $this->Note_vc->col_type = 'note_vc_type';
         $this->Note_vc->col = 'note_vc';
+        $this->Note_vc->col_date = 'note_vc_date';
     }
 
     // Get all data
@@ -91,9 +92,10 @@ class Note_vc_api extends Files
 
         // Clean the data
         $this->Note_vc->purchase_id = $_GET['ID'];
-        $this->Note_vc->col_name = $_FILES['note_vc']['name'];
-        $this->Note_vc->col_type = $_FILES['note_vc']['type'];
-        $this->Note_vc->col = file_get_contents($_FILES['note_vc']['tmp_name']);
+        $this->Note_vc->col_name_value = $_FILES['note_vc']['name'];
+        $this->Note_vc->col_type_value = $_FILES['note_vc']['type'];
+        $this->Note_vc->col_value = file_get_contents($_FILES['note_vc']['tmp_name']);
+        $this->Note_vc->col_date_value=$_POST['note_vc_date'];
 
         if ($this->Note_vc->post()) {
             $this->get_by_id($_GET['ID']);
@@ -105,7 +107,7 @@ class Note_vc_api extends Files
     // Delete a file
     public function delete_by_id()
     {
-        if (isset($_GET['ID'])) {
+        if (!isset($_GET['ID'])) {
             send(400, "error", "provide an ID");
             die();
         }
@@ -119,10 +121,7 @@ class Note_vc_api extends Files
     }
 }
 
-// To check if admin is logged in
-loggedin();
 
-// If admin logged in ...
 
 // GET all the info
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -133,6 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $Note_vc_api->get();
     }
 }
+
+// To check if admin is logged in
+loggedin();
+
+// If admin logged in ...
 
 // POST a new file
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT') {

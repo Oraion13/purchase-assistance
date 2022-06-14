@@ -33,6 +33,7 @@ class Note_order_dean_api extends Files
         $this->Note_order_dean->col_name = 'note_order_dean_name';
         $this->Note_order_dean->col_type = 'note_order_dean_type';
         $this->Note_order_dean->col = 'note_order_dean';
+        $this->Note_order_dean->col_date = 'note_order_dean_date';
     }
 
     // Get all data
@@ -91,10 +92,11 @@ class Note_order_dean_api extends Files
 
         // Clean the data
         $this->Note_order_dean->purchase_id = $_GET['ID'];
-        $this->Note_order_dean->col_name = $_FILES['note_order_dean']['name'];
-        $this->Note_order_dean->col_type = $_FILES['note_order_dean']['type'];
-        $this->Note_order_dean->col = file_get_contents($_FILES['note_order_dean']['tmp_name']);
-
+        $this->Note_order_dean->col_name_value = $_FILES['note_order_dean']['name'];
+        $this->Note_order_dean->col_type_value = $_FILES['note_order_dean']['type'];
+        $this->Note_order_dean->col_value = file_get_contents($_FILES['note_order_dean']['tmp_name']);
+        $this->Note_order_dean->col_date_value=$_POST['note_order_dean_date'];
+        
         if ($this->Note_order_dean->post()) {
             $this->get_by_id($_GET['ID']);
         } else {
@@ -105,7 +107,7 @@ class Note_order_dean_api extends Files
     // Delete a file
     public function delete_by_id()
     {
-        if (isset($_GET['ID'])) {
+        if (!isset($_GET['ID'])) {
             send(400, "error", "provide an ID");
             die();
         }
@@ -119,10 +121,7 @@ class Note_order_dean_api extends Files
     }
 }
 
-// To check if admin is logged in
-loggedin();
 
-// If admin logged in ...
 
 // GET all the info
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -133,6 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $Note_order_dean_api->get();
     }
 }
+
+// To check if admin is logged in
+loggedin();
+
+// If admin logged in ...
 
 // POST a new file
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'PUT') {

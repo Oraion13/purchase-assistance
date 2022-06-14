@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+header{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("bgImg.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+ul{
+    float: right; 
+    list-style-type:  none;
+    margin-top: 25px;
+    margin-right: 30px;
+}
+ul li{
+    display: inline-block;
+}
+ul li a{
+    text-decoration: none;
+color:#fff;
+padding: 5px 20px;
+border: 1px solid transparent;
+transition:0.6s ease;
+}
+ul li a:hover{
+    background-color: #fff;
+    color:#000;
+}
+.title{
+    position:absolute;
+    top:10%;
+    left: 25%;
+    transform:translate(-50%,-50%);
+}
+.title h1{
+    color:#fff;
+    font-size: 70px;
+    
+}
+.main{
+    max-width: 1200px;
+    margin:auto;
+}
+.form{
+    width: 250px;
+    height: 320px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    position: absolute;
+    top: 160px;
+    left: 870px;
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.form h2{
+    width: 220px;
+    font-family: sans-serif;
+    text-align: center;
+    color: #f7f5f4;
+    font-size: 22px;
+    
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+}
+
+.form input{
+    width: 240px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #ff7200;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    font-family: sans-serif;
+}
+
+.form input:focus{
+    outline: none;
+}
+
+::placeholder{
+    color: #fff;
+    font-family: Arial;
+}
+.btnn{
+    width: 240px;
+    height: 40px;
+    background: #ff7200;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+}
+.btnn:hover{
+    background: #fff;
+    color: #ff7200;
+}
+.btnn a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+.form .link{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    padding-top: 20px;
+    text-align: center;
+}
+.form .link a{
+    text-decoration: none;
+    color: #ff7200;
+}
+.forgetPassword{
+    text-decoration: none;
+    color:#f7f5f4;
+}
+.signup{
+    width: 240px;
+    height: 40px;
+    background: #fcfcfc;
+    border: none;
+    margin-top: 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(20, 19, 19);
+    transition: 0.4s ease;
+}
+.signup a{
+    color:#000;
+    text-decoration: none;
+}
+
+#form1{
+    width: 250px;
+    height: 320px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    position: absolute;
+    top: 160px;
+    left: 870px;
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#form1 h2, #reset h2,#otp h2, #recreate h2, #status h2{
+    width: 220px;
+    font-family: sans-serif;
+    text-align: center;
+    color: #f7f5f4;
+    font-size: 22px;
+    
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+}
+
+#form1 input, #reset input,#otp input, #recreate input, #search input{
+    width: 240px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #ff7200;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    font-family: sans-serif;
+}
+
+#form1 input:focus, #reset input:focus, #recreate input:focus, #search input:focus{
+    outline: none;
+}
+
+::placeholder{
+    color: #fff;
+    font-family: Arial;
+}
+#reset{
+    width: 250px;
+    height: 220px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    position: absolute;
+    top: 160px;
+    left: 870px;
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+#otp{
+    width: 250px;
+    height: 170px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    position: absolute;
+    top: 160px;
+    left: 870px;
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+#recreate{
+    width: 250px;
+    height: 280px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    position: absolute;
+    top: 160px;
+    left: 870px;
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+#search{
+    width: 250px;
+    height: 200px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    position: absolute;
+    top: 160px;
+    left: 470px;
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 25px;
+}
