@@ -31,7 +31,7 @@ function toLogin(){
 const status=document.getElementById("search");
 search.style.display="none";
 const sts=document.getElementById("sts");
-sts.addEventListener('click' , () => {
-    search.style.display="block";
-})
+// sts.addEventListener('click' , () => {
+//     search.style.display="block";
+// })
 

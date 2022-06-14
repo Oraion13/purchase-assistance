@@ -67,7 +67,8 @@ class Purchases_api extends Purchases
 
         // Clean the data
         $this->Purchases->purchase_type = $data->purchase_type;
-        $this->Purchases->purchase_year = $data->purchase_year;
+        $this->Purchases->purchase_from = $data->purchase_from;
+        $this->Purchases->purchase_to = $data->purchase_to;
         $this->Purchases->department = $data->department;
         $this->Purchases->purchase_name = $data->purchase_name;
         $this->Purchases->purchase_purpose = $data->purchase_purpose;
@@ -117,7 +118,8 @@ class Purchases_api extends Purchases
 
         // Clean the data
         $this->Purchases->purchase_id = $_GET['ID']; // should pass the purchases id in URL
-        $this->Purchases->purchase_year = $data->purchase_year;
+        $this->Purchases->purchase_from = $data->purchase_from;
+        $this->Purchases->purchase_to = $data->purchase_to;
         $this->Purchases->purchase_type = $data->purchase_type;
         $this->Purchases->department = $data->department;
         $this->Purchases->purchase_name = $data->purchase_name;
@@ -130,7 +132,8 @@ class Purchases_api extends Purchases
 
         // If purchases already exists, update the purchases that changed
         if ($all_data) {
-            $this->update_by_id($all_data['purchase_year'], $data->purchase_year, 'purchase_year');
+            $this->update_by_id($all_data['purchase_from'], $data->purchase_from, 'purchase_from');
+            $this->update_by_id($all_data['purchase_to'], $data->purchase_to, 'purchase_to');
             $this->update_by_id($all_data['purchase_type'], $data->purchase_type, 'purchase_type');
             $this->update_by_id($all_data['department'], $data->department, 'department');
             $this->update_by_id($all_data['purchase_name'], $data->purchase_name, 'purchase_name');

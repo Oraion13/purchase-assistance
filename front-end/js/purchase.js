@@ -1,6 +1,7 @@
 const add = document.getElementById("add");
 const purchase_type = document.getElementById("purchase_type");
-const purchase_year = document.getElementById("purchase_year");
+const purchase_from = document.getElementById("purchase_from");
+const purchase_to= document.getElementById("purchase_to");
 const department = document.getElementById("department");
 const purchase_name = document.getElementById("purchase_name");
 const purchase_purpose = document.getElementById("purchase_purpose");
@@ -197,7 +198,8 @@ function submit_form(e) {
 
   const purchase = {
     purchase_type: purchase_type.value,
-    purchase_year: purchase_year.value,
+    purchase_from: purchase_from.value,
+    purchase_to: purchase_to.value,
     department: department.value,
     purchase_name: purchase_name.value,
     purchase_purpose: purchase_purpose.value,
@@ -219,7 +221,8 @@ function submit_form(e) {
         window.alert("purchase added successfully");
         setup_purchase_table();
         purchase_type.value = "";
-        purchase_year.value = "";
+        purchase_from.value = "";
+        purchase_to.value = "";
         department.value = "";
         purchase_name.value = "";
         purchase_purpose.value = "";

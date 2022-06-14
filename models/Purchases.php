@@ -8,7 +8,8 @@ class Purchases
 
     public $purchase_id  = 0;
     public $purchase_type = '';
-    public $purchase_year = '';
+    public $purchase_from = '';
+    public $purchase_to = '';
     public $department = '';
     public $purchase_name = '';
     public $purchase_purpose = '';
@@ -68,14 +69,15 @@ class Purchases
     public function read_single()
     {
         $query = 'SELECT * FROM ' . $this->table . ' WHERE purchase_type = :purchase_type'
-            . ' AND purchase_year = :purchase_year AND department = :department AND purchase_name = :purchase_name'
+            . ' AND purchase_from = :purchase_from AND purchase_to = :purchase_to AND department = :department AND purchase_name = :purchase_name'
             . ' AND purchase_purpose = :purchase_purpose AND is_consumable = :is_consumable AND is_below = :is_below';
 
         $stmt = $this->conn->prepare($query);
 
         // clean the data
         $this->purchase_type = htmlspecialchars(strip_tags($this->purchase_type));
-        $this->purchase_year = htmlspecialchars(strip_tags($this->purchase_year));
+        $this->purchase_from = htmlspecialchars(strip_tags($this->purchase_from));
+        $this->purchase_to = htmlspecialchars(strip_tags($this->purchase_to));
         $this->department = htmlspecialchars(strip_tags($this->department));
         $this->purchase_name = htmlspecialchars(strip_tags($this->purchase_name));
         $this->purchase_purpose = htmlspecialchars(strip_tags($this->purchase_purpose));
@@ -83,7 +85,8 @@ class Purchases
         $this->is_below = htmlspecialchars(strip_tags($this->is_below));
 
         $stmt->bindParam(':purchase_type', $this->purchase_type);
-        $stmt->bindParam(':purchase_year', $this->purchase_year);
+        $stmt->bindParam(':purchase_from', $this->purchase_from);
+        $stmt->bindParam(':purchase_to', $this->purchase_to);
         $stmt->bindParam(':department', $this->department);
         $stmt->bindParam(':purchase_name', $this->purchase_name);
         $stmt->bindParam(':purchase_purpose', $this->purchase_purpose);

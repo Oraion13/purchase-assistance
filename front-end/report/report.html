@@ -16,18 +16,18 @@
         </nav><br><br>
         <div class="filter">
             <label>From</label>
-            <input type="month">
+            <input type="month" id="purchase_from">
             <label>To</label>
-            <input type="month">
+            <input type="month" id="purchase_to">
             <label>Department:</label>
             <select id="department">
                 <option value="CSE">CSE</option>
                 <option value="MECH">MECH</option>
-                <option value="GEO">ECE</option>
+                <option value="ECE">ECE</option>
                 <option value="GEO">GEO</option>
                 <option value="other">other</option>
             </select>
-            <button>Submit</button>
+            <!-- <button>Submit</button> -->
         </div>
          <h1>Consumable</h1>
         <table class="content-table">
@@ -41,7 +41,7 @@
                 <th>Price</th>
               </tr>
             </thead>
-            
+            <tbody id="consumable_table_body"></tbody>
           </table>
           <h1>Non-Consumable</h1>
         <table class="content-table">
@@ -55,8 +55,9 @@
                 <th>Price</th>
               </tr>
             </thead>
-            
+            <tbody id="non_consumable_table_body"></tbody>
           </table>
           <button type="button" class="btn btn-success">Generate Report</button>
     </body>
+    <script src="./report.js"></script>
 </html>
