@@ -71,13 +71,11 @@ class Purchases
     // Read all data by dates
     public function read_row_date()
     {
-        $query = 'SELECT * FROM purchases WHERE purchase_from BETWEEN :start AND :end';
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE purchase_from BETWEEN :start AND :end';
 
         $stmt = $this->conn->prepare($query);
 
         // // Clean the data
-        $this->start = htmlspecialchars(strip_tags($this->start));
-        $this->end = htmlspecialchars(strip_tags($this->end));
 
         $stmt->bindParam(':start', $this->start);
         $stmt->bindParam(':end', $this->end);
@@ -137,7 +135,7 @@ class Purchases
     // Insert new purchase data
     public function post()
     {
-        $query = 'INSERT INTO ' . $this->table . ' SET purchase_type = :purchase_type, purchase_year = :purchase_year, 
+        $query = 'INSERT INTO ' . $this->table . ' SET purchase_type = :purchase_type, purchase_from = :purchase_from, purchase_to = :purchase_to, 
         department = :department, purchase_name = :purchase_name, purchase_purpose = :purchase_purpose, 
         is_consumable = :is_consumable, is_below = :is_below';
 
@@ -145,7 +143,8 @@ class Purchases
 
         // Clean the data
         $this->purchase_type = htmlspecialchars(strip_tags($this->purchase_type));
-        $this->purchase_year = htmlspecialchars(strip_tags($this->purchase_year));
+        $this->purchase_from = htmlspecialchars(strip_tags($this->purchase_from));
+        $this->purchase_to = htmlspecialchars(strip_tags($this->purchase_to));
         $this->department = htmlspecialchars(strip_tags($this->department));
         $this->purchase_name = htmlspecialchars(strip_tags($this->purchase_name));
         $this->purchase_purpose	= htmlspecialchars(strip_tags($this->purchase_purpose));
@@ -153,7 +152,8 @@ class Purchases
         $this->is_below = htmlspecialchars(strip_tags($this->is_below));
 
         $stmt->bindParam(':purchase_type', $this->purchase_type);
-        $stmt->bindParam(':purchase_year', $this->purchase_year);
+        $stmt->bindParam(':purchase_from', $this->purchase_from);
+        $stmt->bindParam(':purchase_to', $this->purchase_to);
         $stmt->bindParam(':department', $this->department);
         $stmt->bindParam(':purchase_name', $this->purchase_name);
         $stmt->bindParam(':purchase_purpose', $this->purchase_purpose);

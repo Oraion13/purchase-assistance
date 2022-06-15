@@ -60,7 +60,7 @@ class Purchases_api extends Purchases
     }
 
     // Get all data of a purchases by date
-    public function get_by_date($from, $end)
+    public function get_by_date($start, $end)
     {
         // Get the purchases from DB
         $from = date('Y-m-01', strtotime($start));
@@ -68,10 +68,14 @@ class Purchases_api extends Purchases
         $to = date('Y-m-01', strtotime($end));
         $this->Purchases->end = $to;
 
-        $all_data = $this->Purchases->read_row();
+        $all_data = $this->Purchases->read_row_date();
 
         if ($all_data) {
-            echo json_encode($all_data);
+            $data = array();
+            while ($row = $all_data->fetch(PDO::FETCH_ASSOC)) {
+                array_push($data, $row);
+            }
+            echo json_encode($data);
             die();
         } else {
             send(400, 'error', 'no purchases found');
@@ -206,8 +210,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $Purchases_api = new Purchases_api();
     if (isset($_GET['ID'])) {
         $Purchases_api->get_by_id($_GET['ID']);
-    } else {
-        $Purchases_api->get();
     }
 }
 

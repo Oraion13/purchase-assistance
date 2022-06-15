@@ -38,12 +38,13 @@ function initialize() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == XMLHttpRequest.DONE) {
       const got = JSON.parse(xhr.responseText);
+      console.log(got);
 
       if (
         got.error.includes("already logged in") &&
         JSON.parse(window.localStorage.getItem("user")).admin_id
       ) {
-        window.location.replace("./index.html");
+        window.location.replace("./form.html");
       }
     }
   };

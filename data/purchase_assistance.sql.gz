@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2022 at 09:53 AM
+-- Generation Time: Jun 16, 2022 at 01:43 AM
 -- Server version: 8.0.28
 -- PHP Version: 8.1.4
 
@@ -30,24 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `purchase_add_description` (
   `add_description_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `note_order_dean` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_vc` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `proceedings` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_order` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `estimation` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `putup_core_committee` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `minutes_recommended` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `po_vender` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `bill` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `payment` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `purchase_add_description`
---
-
-INSERT INTO `purchase_add_description` (`add_description_id`, `purchase_id`, `note_order_dean`, `note_vc`, `proceedings`, `note_order`, `estimation`, `putup_core_committee`, `minutes_recommended`, `po_vender`, `bill`, `payment`) VALUES
-(1, 1, 'updated', NULL, NULL, 'status', NULL, NULL, NULL, NULL, NULL, NULL);
+  `note_order_dean` varchar(100) DEFAULT NULL,
+  `note_vc` varchar(100) DEFAULT NULL,
+  `proceedings` varchar(100) DEFAULT NULL,
+  `note_order` varchar(100) DEFAULT NULL,
+  `estimation` varchar(100) DEFAULT NULL,
+  `putup_core_committee` varchar(100) DEFAULT NULL,
+  `minutes_recommended` varchar(100) DEFAULT NULL,
+  `po_vender` varchar(100) DEFAULT NULL,
+  `bill` varchar(100) DEFAULT NULL,
+  `payment` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -57,16 +50,16 @@ INSERT INTO `purchase_add_description` (`add_description_id`, `purchase_id`, `no
 
 CREATE TABLE `purchase_admin` (
   `admin_id` int NOT NULL,
-  `admin_name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `admin_name` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `purchase_admin`
 --
 
 INSERT INTO `purchase_admin` (`admin_id`, `admin_name`, `password`) VALUES
-(1, 'admin', '$2a$10$V8pO0kanLFv9JCw5rgMcJ.8ur/s9guEQMZj7lXX0Bxx7uFOwYNMjS\r\n');
+(2, 'admin', '$2a$10$GO2Rf4FbOSPwEDs9VQBIlOsR0n8X0.viLFBDOgjrF6wxyvJrboz4O');
 
 -- --------------------------------------------------------
 
@@ -77,10 +70,11 @@ INSERT INTO `purchase_admin` (`admin_id`, `admin_name`, `password`) VALUES
 CREATE TABLE `purchase_bill` (
   `bill_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `bill_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `bill_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `bill` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `bill_name` varchar(100) DEFAULT NULL,
+  `bill_type` varchar(50) DEFAULT NULL,
+  `bill` longblob,
+  `bill_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -91,10 +85,11 @@ CREATE TABLE `purchase_bill` (
 CREATE TABLE `purchase_estimation` (
   `estimation_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `estimation_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `estimation_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `estimation` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `estimation_name` varchar(100) DEFAULT NULL,
+  `estimation_type` varchar(50) DEFAULT NULL,
+  `estimation` longblob,
+  `estimation_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -105,10 +100,11 @@ CREATE TABLE `purchase_estimation` (
 CREATE TABLE `purchase_minutes_recommended` (
   `minutes_recommended_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `minutes_recommended_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `minutes_recommended_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `minutes_recommended` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `minutes_recommended_name` varchar(100) DEFAULT NULL,
+  `minutes_recommended_type` varchar(50) DEFAULT NULL,
+  `minutes_recommended` longblob,
+  `minutes_recommended_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -119,10 +115,11 @@ CREATE TABLE `purchase_minutes_recommended` (
 CREATE TABLE `purchase_note_order` (
   `note_order_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `note_order_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_order_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_order` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `note_order_name` varchar(100) DEFAULT NULL,
+  `note_order_type` varchar(50) DEFAULT NULL,
+  `note_order` longblob,
+  `note_order_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -133,10 +130,11 @@ CREATE TABLE `purchase_note_order` (
 CREATE TABLE `purchase_note_order_dean` (
   `note_order_dean_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `note_order_dean_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_order_dean_type` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_order_dean` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `note_order_dean_name` varchar(100) DEFAULT NULL,
+  `note_order_dean_type` varchar(50) DEFAULT NULL,
+  `note_order_dean` longblob,
+  `note_order_dean_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -147,10 +145,11 @@ CREATE TABLE `purchase_note_order_dean` (
 CREATE TABLE `purchase_note_vc` (
   `note_vc_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `note_vc_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_vc_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `note_vc` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `note_vc_name` varchar(100) DEFAULT NULL,
+  `note_vc_type` varchar(50) DEFAULT NULL,
+  `note_vc` longblob,
+  `note_vc_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -161,10 +160,11 @@ CREATE TABLE `purchase_note_vc` (
 CREATE TABLE `purchase_payment` (
   `payment_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `payment_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `payment_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `payment` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `payment_name` varchar(100) DEFAULT NULL,
+  `payment_type` varchar(50) DEFAULT NULL,
+  `payment` longblob,
+  `payment_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -175,10 +175,11 @@ CREATE TABLE `purchase_payment` (
 CREATE TABLE `purchase_po_vender` (
   `po_vender_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `po_vender_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `po_vender_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `po_vender` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `po_vender_name` varchar(100) DEFAULT NULL,
+  `po_vender_type` varchar(50) DEFAULT NULL,
+  `po_vender` longblob,
+  `po_vender_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -189,10 +190,11 @@ CREATE TABLE `purchase_po_vender` (
 CREATE TABLE `purchase_proceedings` (
   `proceedings_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `proceedings_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `proceedings_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `proceedings` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `proceedings_name` varchar(100) DEFAULT NULL,
+  `proceedings_type` varchar(50) DEFAULT NULL,
+  `proceedings` longblob,
+  `proceedings_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -202,21 +204,15 @@ CREATE TABLE `purchase_proceedings` (
 
 CREATE TABLE `purchase_purchases` (
   `purchase_id` int NOT NULL,
-  `purchase_type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `purchase_year` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `department` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `purchase_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `purchase_purpose` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `purchase_type` varchar(50) NOT NULL,
+  `purchase_from` date NOT NULL,
+  `purchase_to` date NOT NULL,
+  `department` varchar(100) NOT NULL,
+  `purchase_name` varchar(100) NOT NULL,
+  `purchase_purpose` varchar(1000) NOT NULL,
   `is_consumable` int NOT NULL,
   `is_below` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `purchase_purchases`
---
-
-INSERT INTO `purchase_purchases` (`purchase_id`, `purchase_type`, `purchase_year`, `department`, `purchase_name`, `purchase_purpose`, `is_consumable`, `is_below`) VALUES
-(1, 'service', '2022', 'Department of computer science', 'PS0456', 'sample', 0, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -227,10 +223,11 @@ INSERT INTO `purchase_purchases` (`purchase_id`, `purchase_type`, `purchase_year
 CREATE TABLE `purchase_putup_core_committee` (
   `putup_core_committee_id` int NOT NULL,
   `purchase_id` int DEFAULT NULL,
-  `putup_core_committee_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `putup_core_committee_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `putup_core_committee` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `putup_core_committee_name` varchar(100) DEFAULT NULL,
+  `putup_core_committee_type` varchar(50) DEFAULT NULL,
+  `putup_core_committee` longblob,
+  `putup_core_committee_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Indexes for dumped tables
@@ -339,7 +336,7 @@ ALTER TABLE `purchase_add_description`
 -- AUTO_INCREMENT for table `purchase_admin`
 --
 ALTER TABLE `purchase_admin`
-  MODIFY `admin_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `purchase_bill`
@@ -357,7 +354,7 @@ ALTER TABLE `purchase_estimation`
 -- AUTO_INCREMENT for table `purchase_minutes_recommended`
 --
 ALTER TABLE `purchase_minutes_recommended`
-  MODIFY `minutes_recommended_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `minutes_recommended_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchase_note_order`
@@ -369,7 +366,7 @@ ALTER TABLE `purchase_note_order`
 -- AUTO_INCREMENT for table `purchase_note_order_dean`
 --
 ALTER TABLE `purchase_note_order_dean`
-  MODIFY `note_order_dean_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `note_order_dean_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchase_note_vc`
@@ -387,7 +384,7 @@ ALTER TABLE `purchase_payment`
 -- AUTO_INCREMENT for table `purchase_po_vender`
 --
 ALTER TABLE `purchase_po_vender`
-  MODIFY `po_vender_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `po_vender_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchase_proceedings`
@@ -399,7 +396,7 @@ ALTER TABLE `purchase_proceedings`
 -- AUTO_INCREMENT for table `purchase_purchases`
 --
 ALTER TABLE `purchase_purchases`
-  MODIFY `purchase_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `purchase_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `purchase_putup_core_committee`

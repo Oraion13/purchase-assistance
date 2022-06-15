@@ -117,6 +117,28 @@ function edit_item(e) {
   xhr.send();
 }
 
+// Helper
+// Date to month-year
+const month_year = (db_date) => {
+  var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+  ];
+  var now = new Date(db_date);
+  return months[now.getMonth()] + "-" + now.getFullYear();
+};
+
+// append in table
 const append_purchase = (got) => {
   // console.log(got);
   got.forEach((item) => {
@@ -130,7 +152,7 @@ const append_purchase = (got) => {
     element.setAttributeNode(ab);
 
     element.innerHTML = `
-    <td>${item.purchase_type}/${item.purchase_from} - ${item.purchase_to}/${
+    <td>${item.purchase_type}/${month_year(item.purchase_from)} - ${month_year(item.purchase_to)}/${
       item.department
     }/${item.purchase_name}</td>
     <td>${item.is_consumable == 1 ? "Consumable" : "Non-Consumable"}</td>
@@ -196,7 +218,6 @@ function submit_form(e) {
   // console.log("hello");
   e.preventDefault();
 
-  console.log("type", purchase_type.value);
   const purchase = {
     purchase_type: purchase_type.value,
     purchase_from: purchase_from.value,
