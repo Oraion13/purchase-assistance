@@ -32,9 +32,22 @@ function submit_form(e) {
 
 // initially
 function initialize() {
-  if (JSON.parse(window.localStorage.getItem("user")).admin_name) {
-    window.location.replace("./form.html");
-  }
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", `../api/login/login.php`, true);
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      const got = JSON.parse(xhr.responseText);
+
+      if (
+        got.error.includes("already logged in") &&
+        JSON.parse(window.localStorage.getItem("user")).admin_id
+      ) {
+        window.location.replace("./index.html");
+      }
+    }
+  };
+  xhr.send();
 }
 
 login_form.addEventListener("submit", submit_form);

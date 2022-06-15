@@ -59,6 +59,26 @@ class Purchases_api extends Purchases
         }
     }
 
+    // Get all data of a purchases by date
+    public function get_by_date($from, $end)
+    {
+        // Get the purchases from DB
+        $from = date('Y-m-01', strtotime($start));
+        $this->Purchases->start = $from;
+        $to = date('Y-m-01', strtotime($end));
+        $this->Purchases->end = $to;
+
+        $all_data = $this->Purchases->read_row();
+
+        if ($all_data) {
+            echo json_encode($all_data);
+            die();
+        } else {
+            send(400, 'error', 'no purchases found');
+            die();
+        }
+    }
+
     // POST a new purchases
     public function post()
     {
@@ -67,8 +87,12 @@ class Purchases_api extends Purchases
 
         // Clean the data
         $this->Purchases->purchase_type = $data->purchase_type;
-        $this->Purchases->purchase_from = $data->purchase_from;
-        $this->Purchases->purchase_to = $data->purchase_to;
+        
+        $from = date('Y-m-01', strtotime($data->purchase_from));
+        $this->Purchases->purchase_from = $from;
+        $to = date('Y-m-01', strtotime($data->purchase_to));
+        $this->Purchases->purchase_to = $to;
+
         $this->Purchases->department = $data->department;
         $this->Purchases->purchase_name = $data->purchase_name;
         $this->Purchases->purchase_purpose = $data->purchase_purpose;
@@ -118,8 +142,12 @@ class Purchases_api extends Purchases
 
         // Clean the data
         $this->Purchases->purchase_id = $_GET['ID']; // should pass the purchases id in URL
-        $this->Purchases->purchase_from = $data->purchase_from;
-        $this->Purchases->purchase_to = $data->purchase_to;
+        
+        $from = date('Y-m-01', strtotime($data->purchase_from));
+        $this->Purchases->purchase_from = $from;
+        $to = date('Y-m-01', strtotime($data->purchase_to));
+        $this->Purchases->purchase_to = $to;
+
         $this->Purchases->purchase_type = $data->purchase_type;
         $this->Purchases->department = $data->department;
         $this->Purchases->purchase_name = $data->purchase_name;
@@ -187,6 +215,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 loggedin();
 
 // If a admin logged in ...
+
+// GET all the purchases
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $Purchases_api = new Purchases_api();
+    if (isset($_GET['from']) && isset($_GET['to'])) {
+        $Purchases_api->get_by_date($_GET['from'], $_GET['to']);
+    } else {
+        $Purchases_api->get();
+    }
+}
 
 // POST a new purchases
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

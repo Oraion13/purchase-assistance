@@ -16,6 +16,9 @@ class Purchases
     public $is_consumable = 0;
     public $is_below = 0;
 
+    public $start = 0;
+    public $end = 0;
+
     // Connect to the DB
     public function __construct($db)
     {
@@ -64,6 +67,31 @@ class Purchases
 
         return false;
     }
+
+    // Read all data by dates
+    public function read_row_date()
+    {
+        $query = 'SELECT * FROM purchases WHERE purchase_from BETWEEN :start AND :end';
+
+        $stmt = $this->conn->prepare($query);
+
+        // // Clean the data
+        $this->start = htmlspecialchars(strip_tags($this->start));
+        $this->end = htmlspecialchars(strip_tags($this->end));
+
+        $stmt->bindParam(':start', $this->start);
+        $stmt->bindParam(':end', $this->end);
+
+        if ($stmt->execute()) {
+            // If data exists, return the data
+            if ($stmt) {
+                return $stmt;
+            }
+        }
+
+        return false;
+    }
+
 
     // read a particular entry
     public function read_single()
