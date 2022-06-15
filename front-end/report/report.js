@@ -1,3 +1,8 @@
+const consumable_table_body = document.getElementById("consumable_table_body");
+const non_consumable_table_body = document.getElementById(
+  "non_consumable_table_body"
+);
+
 // get from local storage
 const get_user = () => {
   return window.localStorage.getItem("user")
@@ -5,7 +10,7 @@ const get_user = () => {
     : [];
 };
 
-// --------------------------------------------- Setup ----------------------------------------------// 
+// --------------------------------------------- Setup ----------------------------------------------//
 // setup sapdlam la
 
 const append_purchase = (got) => {
@@ -21,9 +26,9 @@ const append_purchase = (got) => {
     element.setAttributeNode(ab);
 
     element.innerHTML = `
-    <td>${item.purchase_type}/${item.purchase_year}/${item.department}/${
-      item.purchase_name
-    }</td>
+    <td>${item.purchase_type}/${item.purchase_from} - ${item.purchase_to}/${
+      item.department
+    }/${item.purchase_name}</td>
     <td>${item.is_consumable == 1 ? "Consumable" : "Non-Consumable"}</td>
     <td>${item.purchase_purpose}</td>
     <td><button type="button" class="delete-btn btn btn-danger">
@@ -39,24 +44,19 @@ const append_purchase = (got) => {
     const editBtn = element.querySelector(".edit-btn");
     editBtn.addEventListener("click", edit_item);
 
-    if(item.is_consumable == 1){
-      document.getElementById("consumable_table_body").appendChild(element);
-    }
-    else{
-      document.getElementById("non_consumable_table_body").appendChild(element);
+    if (item.is_consumable == 1) {
+      consumable_table_body.appendChild(element);
+    } else {
+      non_consumable_table_body.appendChild(element);
     }
   });
 };
 
-
 // Table display
 const setup_purchase_table = () => {
-  table_purchase.innerHTML = `
-  <tr>
-            <th>PurchaseId</th>
-            <th>Type</th>
-            <th>Purpose</th>
-        </tr>`;
+  non_consumable_table_body.innerHTML = ``;
+  consumable_table_body.innerHTML = ``;
+
   const xhr = new XMLHttpRequest();
 
   xhr.open("GET", `../../api/purchase/purchases.php`, true);
@@ -76,7 +76,6 @@ const setup_purchase_table = () => {
 
   xhr.send();
 };
-
 
 // --------------------------------------------- Initially --------------------------------------------- //
 

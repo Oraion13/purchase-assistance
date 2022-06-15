@@ -1,7 +1,7 @@
 const add = document.getElementById("add");
 const purchase_type = document.getElementById("purchase_type");
 const purchase_from = document.getElementById("purchase_from");
-const purchase_to= document.getElementById("purchase_to");
+const purchase_to = document.getElementById("purchase_to");
 const department = document.getElementById("department");
 const purchase_name = document.getElementById("purchase_name");
 const purchase_purpose = document.getElementById("purchase_purpose");
@@ -130,9 +130,9 @@ const append_purchase = (got) => {
     element.setAttributeNode(ab);
 
     element.innerHTML = `
-    <td>${item.purchase_type}/${item.purchase_year}/${item.department}/${
-      item.purchase_name
-    }</td>
+    <td>${item.purchase_type}/${item.purchase_from} - ${item.purchase_to}/${
+      item.department
+    }/${item.purchase_name}</td>
     <td>${item.is_consumable == 1 ? "Consumable" : "Non-Consumable"}</td>
     <td>${item.purchase_purpose}</td>
     <td><button type="button" class="delete-btn btn btn-danger">
@@ -193,9 +193,10 @@ function remove_from_local_storage(id) {
 // -------------------------------------- POST --------------------------------- //
 // submit form
 function submit_form(e) {
-  console.log("hello");
+  // console.log("hello");
   e.preventDefault();
 
+  console.log("type", purchase_type.value);
   const purchase = {
     purchase_type: purchase_type.value,
     purchase_from: purchase_from.value,
